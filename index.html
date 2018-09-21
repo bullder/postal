@@ -14,30 +14,7 @@
 			padding: 200px 0 0 400px;
 		}
 
-		#cover h2 {
-				margin: 30px 0 0;
-				color: white;
-				text-align: center;
-				font-size: 70px;
-		}
-
-		#cover p {
-			margin: 10px 0 0;
-			text-align: center;
-			color: white;
-			font-style: italic;
-			font-size: 20px;
-		}
-
-		#cover p a {
-			color: white;
-		}
-
-		#cover {
-			padding-top: 40%;
-		}
-
-		#precover:after, #cover:after, #picture:after {
+		#precover:after, #picture:after {
 			display: none;
 		}
 
@@ -45,8 +22,8 @@
 			font-size: 120%;
 		}
 
-		#thanks tr {
-			min-height: 150px;
+		#thanks img {
+			min-height: 100px;
 		}
     </style>
 </head>
@@ -54,192 +31,198 @@
 
 	<header class="caption">
 		<h1>Going postal</h1>
-		<p>Yours Michael Garifullin, Smartbox Group.</p>
+		<p>Michael Garifullin, Smartbox Group.</p>
 	</header>
 
 	<section class="slide" id="precover">
-			<h2>Going postal</h2>
-			<p>
-				messaging the past, present and hopes<br />
-				Michael Garifullin - 13/07/2018
-			</p>
-			<figure>
-				<img class="cover" src="pictures/cover.png" alt="Going postal">
-				<figcaption class="copyright right white">
-					<a href="http://smartbox.com/">© Smartbox</a>
-				</figcaption>
-			</figure>
-			<style>
-	
-			</style>
-		</section>
-
-	<section class="slide" id="cover">
+		<h2>Messaging service</h2>
+		<p>
+			technical design preview<br />
+			Michael Garifullin - 20/09/2018
+		</p>
 		<figure>
-			<img class="cover" src="pictures/cover.jpg" alt="Going postal">
+			<img class="cover" src="pictures/cover.png" alt="Going postal">
+			<figcaption class="copyright right white">
+				<a href="http://smartbox.com/">© Smartbox</a>
+			</figcaption>
 		</figure>
-		<style>
-
-		</style>
 	</section>
 
 	<section class="slide">
-		<h2>How it was</h2>
-		<ol>
-			<li>Function-style call to send something</li>
-			<li>JarvisBooking\Mailer->sendCancellationEmail
-				<ul>
-					<li>Resolve channel of notification, adjust presentation regaring that</li>
-					<li>Collect data</li>
-					<li>Render twig</li>
-				</ul>
-			</li>
-			<li>Common email sending stuff
-				<ul>
-					<li>Wrap it to Swift_Message</li>
-					<li>We're responsible for delivering</li>
-				</ul>
-			</li>
-			<li>Logging and error handling</li>
-		</ol>
+		<h2 >
+			Connect with<br />
+			each other<br />
+			<span style="color: darkorange">
+			as never<br />
+			before
+			</span>
+		</h2>
+		<p>
+			With services and queues in hassle-free way
+		</p>
 	</section>
 
 	<section class="slide">
-		<h2>How it is</h2>
-		<ol>
-			<li>Fire event that something happened.</li>
-			<li>espBundle->EmailFactory->createNew()
-				<ul>
-					<li>Resolve campaingId for notification</li>
-					<li>Collect array data</li>
-					<li><s>Render twig</s></li>
-				</ul>
-			</li>
-			<li>espBundle->SenderInterface->send()
-				<ol>
-					<li>Send serialized array to external service with POST request</li>
-					<li>We're <s>responsible</s> not responsible for delivering</li>
-				</ol>
-			</li>
-			<li>Logging and error handling</li>
-		</ol>
+		<h2>Sending as usual. Configuration</h2>
+		<pre>
+			<code>
+			"mailer_host": "smtp.production.smartbox.com",
+			"mailer_password": "super_secret_password",
+			"mailer_transport": "smtp",
+			"mailer_user": postmaster",
+			"mailer_from": "contact@smartbox.com",
+			"mailer_sender": "Smartbox Booking",
+			</code>
+		</pre>
 	</section>
 
 	<section class="slide">
-			<h2>How it can be</h2>
-			<ol>
-				<li>Fire event that something happened.</li>
-				<li>Serialize event by DTO schema</li>
-				<li>Send it to JarvisMessenger rest-service
-					<ul>
-						<li>Pre-flight data collection from external services if necessary</li>
-						<li>Routing to different notification channels (vary vendor/carrier)</li>
-						<li>Post-notification internall services (notification to partner/finace team)</li>
-					</ul>
-				</li>
-				<li>Consolidated service health monitor</li>
-				<li>Logging and error handling (resend if unreachable, check response code)</li>
-			</ol>
+		<h2>Hassle-free way. Configuration</h2>
+		<pre>
+			<code>
+			"key": "AKIAJTSIRNXM6K7RRUPA",
+			"secret": "XPTt20+QqceWTALevdFeyuhgcnw",
+			"client_id": "jarvis.booking.staging",
+			</code>
+		</pre>
+		<ul>
+			<li>We will use only key for connection, secret for signing a messages and client ID to detect the environment</li>
+			<li>All others will be hidden by connector library</li>
+		</ul>
 	</section>
 
 	<section class="slide">
-			<h2>How it may be</h2>
-			<ol>
-				<li>Fire event that something happened.</li>
-				<li>Transform it to JarvisMessenger\MessageQueue and send it to queue</li>
-				<li>Consume message from queue
-					<ul>
-						<li>Pre-flight data collection from external services if necessary</li>
-						<li>Routing to different notification channels (vary vendor/carrier)</li>
-						<li>Post-notification internall services (notification to partner/finace team)</li>
-					</ul>
-				</li>
-				<li>Service health monitor</li>
-				<li>Message queue monitor (don't need to validate response code, monitor entire queue state)</li>
-			</ol>
+		<h2>Send as usual. Prepare data</h2>
+		<pre style="font-size: 50%">
+			<code>
+			$customerData = $order->getCustomerData();
+        	$customerAddress = array_filter($order->getCustomerAddress(), function ($key) {
+				return in_array($key, ['prefix', ..., 'cellphone']);
+			}, ARRAY_FILTER_USE_KEY);
+			$transaction = $order->getPaymentInstruction()->getExtendedData();
+
+			return [
+				'order_id' => $order->getUniqueReference(),
+				'customer' => [
+					'name' => sprintf("%s %s", $customerData['firstname'], $customerData['lastname']),
+					...,
+					'address' => $customerAddress,
+			],
+				'payment' => [
+					'pay_id' => $transaction->get('PAYID'),
+					...,
+				]
+			]
+			</code>
+		</pre>
 	</section>
 
 	<section class="slide">
-		<h2>Let's compare!</h2>
-		<table>
-			<tr>
-				<th scope="col"></th>
-				<th>Past</th>
-				<th>Present</th>
-				<th>Future (REST)</th>
-				<th>Fututistic (MQ)</th>
-			</tr>
-			<tr>
-				<th scope="row">Collecting</th>
-				<td>Internal</td>
-				<td>Internal</td>
-				<td>Expandable</td>
-				<td>Expandable</td>
-			</tr>
-			<tr>
-				<th scope="row">Presenting</th>
-				<td>Twig</td>
-				<td>3rd party</td>
-				<td>Optional</td>
-				<td>Optional</td>
-			</tr>
-			<tr>
-				<th scope="row">Sending object</th>
-				<td>SwiftMessage</td>
-				<td>EspBundle\Email</td>
-				<td>ApiRequest\Email</td>
-				<td>MessageQueue</td>
-			</tr>
-			<tr>
-				<th scope="row">Logic/routing</th>
-				<td>No</td>
-				<td>Not for now</td>
-				<td>By design</td>
-				<td>By design</td>
-			</tr>
-			<tr>
-				<th scope="row">Logging</th>
-				<td>Yes</td>
-				<td>Yes</td>
-				<td>Service monitor</td>
-				<td>Service + queue monitor</td>
-			</tr>
-			<tr>
-				<th scope="row">Error handling</th>
-				<td>Internal</td>
-				<td>Partially internal</td>
-				<td>Partially internal</td>
-				<td>99% external</td>
-			</tr>
-		</table>
+		<h2>Hassle-free way. Prepare data</h2>
+		<pre style="font-size: 50%">
+			<code>
+			return (new MessengerEvent)
+				->setOrderId($order->getUniqueReference())
+				->setBrand($order->getBrand())
+				->setCountry($order->getCountry());
+
+				// or
+
+			return new MessengerEvent::fromOrder($order);
+			</code>
+		</pre>
+		<ul>
+			<li>We are collecting only minimal amount of data which allow us to determine actors of event</li>
+			<li>We do not require to have all data because that may be additionally requested from other services</li>
+		</ul>
 	</section>
 
 	<section class="slide">
-			<h2>So what are the benefits?</h2>
-			<ol>
-				<li>One type of domain task - one point of responsibility</li>
-				<li>Opportunity to move messaging logic outside</li>
-				<li>Easier to diagnose the issues and health state</li>
-				<li>In case of message queue implementation - we'll able to get rid of painfull REST error handling</li>
-			</ol>
+		<h2>Send as usual. Presenting</h2>
+		<pre style="font-size: 50%">
+			<code>
+			return $this->templating->render('
+				&#x3C;table style=&#x22;width: 100%&#x22;&#x3E;
+				&#x3C;tr&#x3E;&#x3C;td colspan=&#x22;2&#x22; style=&#x22;font-weight: bold; font-size: 1.2em;&#x22;&#x3E;User information&#x3C;/td&#x3E;&#x3C;/tr&#x3E;
+				&#x3C;tr&#x3E;&#x3C;td width=&#x22;20%&#x22;&#x3E;Order ID&#x3C;/td&#x3E;&#x3C;td&#x3E;{{ order_id }}&#x3C;/td&#x3E;&#x3C;/tr&#x3E;
+				...
+				&#x3C;tr&#x3E;&#x3C;td&#x3E;Country&#x3C;/td&#x3E;&#x3C;td&#x3E;{{ country }}&#x3C;/td&#x3E;&#x3C;/tr&#x3E;
+				&#x3C;tr&#x3E;&#x3C;td&#x3E;Brand&#x3C;/td&#x3E;&#x3C;td&#x3E;{{ brand }}&#x3C;/td&#x3E;&#x3C;/tr&#x3E;
+				&#x3C;tr&#x3E;&#x3C;td&#x3E;Thanks for purchasing&#x3C;/td&#x3E;&#x3C;/tr&#x3E;
+				', $data);
+			</code>
+		</pre>
 	</section>
 
-	<section class="slide" id="thanks">
-		<h2>Special thanks to</h2>
-		<table>
-			<tr>
-				<td>Filip Zelic as Bundle Owner</td>
-				<td>
-					<img src="pictures/filip.png" />
-				</td>
-			</tr>
-			<tr>
-				<td>Minh Tran Quang as Bundle Implementor</td>
-				<td>
-					<img src="pictures/minh.jpg" />
-				</td>
-			</tr>
-		</table>
+	<section class="slide">
+		<h2>Hassle-free way. Presenting</h2>
+		<pre style="font-size: 50%">
+			<code>
+				// nothing
+			</code>
+		</pre>
+		<ul>
+			<li>Sender is not responsible for presenting</li>
+			<li>For Events which will be sent with Cheetah template can be adjusted externally</li>
+			<li>Nevertheless, we will be able to have one point of responsibility for rearranging and representing notifications</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Send as usual. Delivering</h2>
+		<pre style="font-size: 50%">
+			<code>
+				$this->mailerService->send(
+					Swift_Message::newInstance()
+						->setSubject($subject)
+						->setFrom($sender)
+						->setTo($recipients)
+						->setBody($body, $format)
+				);
+			</code>
+		</pre>
+		<ul>
+			<li>Operation is not async. We have to wait when Mailer will finish his work</li>
+			<li>We're responsible for retry</li>
+			<li>Hard to reproduce in purpose of QA investigation</li>
+			<li>Service in charge to log results</li>
+		</ul>
+	</section>
+
+	<section class="slide">
+		<h2>Hassle-free way. Delivering</h2>
+		<pre style="font-size: 50%">
+			<code>
+				$this->messengerService->send(
+					$messengerEvent
+				);
+			</code>
+		</pre>
+		<ul>
+			<li>Operation of placing into queue is not async but should be fast enough</li>
+			<li>Once it is in queue all other workflow is async</li>
+			<li>We have consolidated history for all notifications</li>
+			<li>Agile methods to replay and fix</li>
+			<li>Complex logic of routing can be hidden behind service</li>
+		</ul>
+	</section>
+
+	<section class="slide" id="schema">
+		<figure>
+			<img class="cover" src="pictures/schema.png" alt="Workflow diagram">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>In conclusion</h2>
+		<ul>
+			<li>Responsibility. Easy to fix and diagnose at single service</li>
+			<li>Scale. Easy to launch new consumers</li>
+			<li>Decoupling. Same functional in serving by one service</li>
+			<li>Redundancy. Event will be stored in queue until that will be properly consumed</li>
+			<li>Asynchronous. Heavyweight operations will be beyond of main workflow</li>
+			<li>Monitoring. Easier to detect bottlenecks</li>
+		</ul>
 	</section>
 
 	<section class="slide" id="picture">

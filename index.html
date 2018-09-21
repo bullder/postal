@@ -214,6 +214,38 @@
 	</section>
 
 	<section class="slide">
+		<h2>Diagram of connector library</h2>
+		<figure>
+			<img src="pictures/uml.png" alt="UML-diagram" style="max-width: 80%; margin: 0 auto;">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2>Draft DB-schema for history of events</h2>
+		<pre style="font-size: 50%">
+				<code>
+					create table history
+					(
+					UUID                BINARY(16) PRIMARY KEY, -- 865234ad-6a92-11e7-8846-b05adad3f0ae,
+					parent_UUID         (b641a5e0-b878-4eb7-9002-aa623d63d0c4),
+					number_revision     (v2),
+					retries             (0),
+					client_id           (jarvis.exchange),
+					event_type          (exchange.voucher.upgrade)
+					environment         (staging)
+					country             (FR),
+					brand               (SBX)
+					message             (DC2Type:json_array - array or patch for array for revision >0)',
+					customer_email      (customer@example.smartbox.com),
+					delivery_status     (new|...|delivered|undelivered),
+					created_at          datetime,
+					updated_at          datetime,
+					)
+				</code>
+			</pre>
+	</section>
+
+	<section class="slide">
 		<h2>In conclusion</h2>
 		<ul>
 			<li>Responsibility. Easy to fix and diagnose at single service</li>

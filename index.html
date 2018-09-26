@@ -246,6 +246,17 @@
 	</section>
 
 	<section class="slide">
+		<h2>Snapshot based functional testing</h2>
+		<img class="place right" style="max-width: 40%" src="pictures/snapshot.png">
+		<ul style="max-width: 50%">
+			<li>Record and reuse responses from external services as snapshots based on test-case and request parameters</li>
+			<li>Test cases based on simple isSameSnapshot($previouslyRecorderResult)</li>
+			<li>Use simple phpunit assertion assertResponseJsonHas, validateResponseCode, assertMatchesJsonSnapshot</li>
+			<li>We're able to isolate test environment from external services</li>
+		</ul>
+	</section>
+
+	<section class="slide">
 		<h2>In conclusion</h2>
 		<ul>
 			<li>Responsibility. Easy to fix and diagnose at single service</li>

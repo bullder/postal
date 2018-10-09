@@ -237,13 +237,29 @@
 					brand               (SBX)
 					message             (DC2Type:json_array - array or patch for array for revision >0)',
 					customer_email      (customer@example.smartbox.com),
-					delivery_status     (new|...|delivered|undelivered),
+					status              (new|...|delivered|undelivered),
 					callbackUrl         (http://local.book.smartbox.com/api/rest/jarvis/v1/message/{UUID}),
 					created_at          datetime,
 					updated_at          datetime,
 					)
 				</code>
 			</pre>
+	</section>
+
+	<section class="slide">
+		<h2>Statuses state-machine</h2>
+		<ul>
+			<li>New - incoming message which wasn't handled</li>
+			<li>Collected - for message which prepared to sending</li>
+			<li>Delivered - for successfully delivered messages</li>
+			<li>Retry - recoverable error, delivery expected during retries (network issue)</li>
+			<li>Undelivered - status for messages which can not be delivered messages and requires attention with human readable description
+				<ul>
+					<li>collecting.jarvisBooking.notReachable or collection.jarvisCatalog.schemaValidation - error during requesting information from service and mapping that data to internal format</li>
+					<li>sending.cheetah.validation or sending.cheetah.authorizationFailed - error during sending to external services</li>
+				</ul>
+			</li>
+		</ul>
 	</section>
 
 	<section class="slide">

@@ -237,8 +237,9 @@
 					brand               (SBX)
 					message             (DC2Type:json_array - array or patch for array for revision >0)',
 					customer_email      (customer@example.smartbox.com),
-					status              (new|...|delivered|undelivered),
-					callbackUrl         (http://local.book.smartbox.com/api/rest/jarvis/v1/message/{UUID}),
+					status              (new|collected|delivered|undelivered|undeliverable),
+					error_description   (collecting.jarvisBooking.schemaValidation - human readable descriptor)
+					callback_url        (http://local.book.smartbox.com/api/rest/jarvis/v1/message/{UUID}),
 					created_at          datetime,
 					updated_at          datetime,
 					)
